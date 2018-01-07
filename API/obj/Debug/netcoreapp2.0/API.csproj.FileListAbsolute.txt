@@ -1,0 +1,10 @@
+c:\Naresh\Github\Website\API\bin\Debug\netcoreapp2.0\API.deps.json
+c:\Naresh\Github\Website\API\bin\Debug\netcoreapp2.0\API.runtimeconfig.json
+c:\Naresh\Github\Website\API\bin\Debug\netcoreapp2.0\API.runtimeconfig.dev.json
+c:\Naresh\Github\Website\API\bin\Debug\netcoreapp2.0\API.dll
+c:\Naresh\Github\Website\API\bin\Debug\netcoreapp2.0\API.pdb
+c:\Naresh\Github\Website\API\obj\Debug\netcoreapp2.0\API.csproj.CoreCompileInputs.cache
+c:\Naresh\Github\Website\API\obj\Debug\netcoreapp2.0\API.AssemblyInfoInputs.cache
+c:\Naresh\Github\Website\API\obj\Debug\netcoreapp2.0\API.AssemblyInfo.cs
+c:\Naresh\Github\Website\API\obj\Debug\netcoreapp2.0\API.dll
+c:\Naresh\Github\Website\API\obj\Debug\netcoreapp2.0\API.pdb

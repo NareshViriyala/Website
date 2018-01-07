@@ -1,0 +1,10 @@
+c:\Naresh\Github\Website\Example\obj\Debug\netcoreapp2.0\Example.csproj.CoreCompileInputs.cache
+c:\Naresh\Github\Website\Example\obj\Debug\netcoreapp2.0\Example.AssemblyInfoInputs.cache
+c:\Naresh\Github\Website\Example\obj\Debug\netcoreapp2.0\Example.AssemblyInfo.cs
+c:\Naresh\Github\Website\Example\bin\Debug\netcoreapp2.0\Example.deps.json
+c:\Naresh\Github\Website\Example\bin\Debug\netcoreapp2.0\Example.runtimeconfig.json
+c:\Naresh\Github\Website\Example\bin\Debug\netcoreapp2.0\Example.runtimeconfig.dev.json
+c:\Naresh\Github\Website\Example\bin\Debug\netcoreapp2.0\Example.dll
+c:\Naresh\Github\Website\Example\bin\Debug\netcoreapp2.0\Example.pdb
+c:\Naresh\Github\Website\Example\obj\Debug\netcoreapp2.0\Example.dll
+c:\Naresh\Github\Website\Example\obj\Debug\netcoreapp2.0\Example.pdb
