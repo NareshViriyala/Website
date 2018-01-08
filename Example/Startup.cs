@@ -25,7 +25,8 @@ namespace Example
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors();
-            services.AddDbContext<DataContext>(x => x.UseInMemoryDatabase("TestDB"));
+            // services.AddDbContext<DataContext>(x => x.UseInMemoryDatabase("TestDB"));
+            services.AddDbContext<DataContext>(x => x.UseSqlServer("Data Source=ec2-54-157-237-224.compute-1.amazonaws.com;Initial Catalog=MyDBTest;Integrated Security=False;Password=India@123;User ID=sa"));
             services.AddMvc();
             services.AddAutoMapper();
 
