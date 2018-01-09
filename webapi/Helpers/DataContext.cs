@@ -1,7 +1,7 @@
-using Example.Entities;
+using webapi.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Example.Helpers
+namespace webapi.Helpers
 {
     public class DataContext : DbContext
     {

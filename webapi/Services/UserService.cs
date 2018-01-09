@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Example.Entities;
-using Example.Helpers;
+using webapi.Entities;
+using webapi.Helpers;
 
-namespace Example.Services
+namespace webapi.Services
 {
     public interface IUserService
     {

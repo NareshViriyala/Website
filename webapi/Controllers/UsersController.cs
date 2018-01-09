@@ -2,17 +2,17 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
-using Example.Dtos;
-using Example.Helpers;
-using Example.Services;
+using webapi.Dtos;
+using webapi.Helpers;
+using webapi.Services;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using System;
-using Example.Entities;
+using webapi.Entities;
 using System.Collections.Generic;
 
-namespace Example.Controllers
+namespace webapi.Controllers
 {
     [Authorize]
     [Route("[controller]")]

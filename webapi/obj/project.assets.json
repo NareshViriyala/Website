@@ -7321,10 +7321,10 @@
       "path": "microsoft.netcore.platforms/2.0.0",
       "files": [
         "LICENSE.TXT",
+        "Microsoft.NETCore.Platforms.2.0.0.nupkg.sha512",
+        "Microsoft.NETCore.Platforms.nuspec",
         "THIRD-PARTY-NOTICES.TXT",
         "lib/netstandard1.0/_._",
-        "microsoft.netcore.platforms.2.0.0.nupkg.sha512",
-        "microsoft.netcore.platforms.nuspec",
         "runtime.json",
         "useSharedDesignerContext.txt",
         "version.txt"
@@ -12608,11 +12608,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Naresh\\Github\\Website\\Example\\Example.csproj",
-      "projectName": "Example",
-      "projectPath": "c:\\Naresh\\Github\\Website\\Example\\Example.csproj",
+      "projectUniqueName": "c:\\Naresh\\Github\\Website\\webapi\\webapi.csproj",
+      "projectName": "webapi",
+      "projectPath": "c:\\Naresh\\Github\\Website\\webapi\\webapi.csproj",
       "packagesPath": "C:\\Users\\nviriyala.COTIVITI\\.nuget\\packages\\",
-      "outputPath": "c:\\Naresh\\Github\\Website\\Example\\obj\\",
+      "outputPath": "c:\\Naresh\\Github\\Website\\webapi\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
