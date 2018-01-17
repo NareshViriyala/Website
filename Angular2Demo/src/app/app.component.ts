@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   pageHeader = 'Employee details';
-
+  isDisables = true;
   getFullName():string{
     return this.pageHeader;
   }

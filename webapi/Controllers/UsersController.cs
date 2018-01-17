@@ -62,7 +62,7 @@ namespace webapi.Controllers
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 Email = user.Email,
-                Token = token
+                Token = tokenString
             });
         }
 
@@ -116,11 +116,11 @@ namespace webapi.Controllers
             }
         }
 
-        [HttpDelete("{id int}")]
-        public IActionResult Delete(int id)
-        {
-            _userService.Delete(id);
-            return Ok();
-        }
+        // [HttpDelete("{id int}")]
+        // public IActionResult Delete(int id)
+        // {
+        //     _userService.Delete(id);
+        //     return Ok();
+        // }
     }
 }
