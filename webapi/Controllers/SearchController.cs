@@ -7,6 +7,7 @@ using webapi.Helpers;
 using System.Data;
 using Newtonsoft.Json;
 using System.Data.SqlClient;
+using System.Dynamic;
 
 namespace webapi.Controllers
 {
@@ -26,21 +27,43 @@ namespace webapi.Controllers
         [HttpGet("{id string}")]
         public IActionResult Get(string id)
         {
-            var jsonResult = "[]";
-            using(var connectionString = new SqlConnection(_appSettings.ConnectionString))
+            try
             {
-                using(var sqlCommand = new SqlCommand("dbo.GetDocDetails",connectionString))
+                var jsonResult = new List<dynamic>();
+                using(var connectionString = new SqlConnection(_appSettings.ConnectionString))
                 {
-                    sqlCommand.CommandType = CommandType.StoredProcedure;
-                    sqlCommand.Parameters.Add("@Input",SqlDbType.NVarChar).Value = id;
-                    connectionString.Open();
-                    var reader = sqlCommand.ExecuteReader();
-                    var dt = new DataTable();
-                    dt.Load(reader);
-                    jsonResult = JsonConvert.SerializeObject(dt);
+                    using(var sqlCommand = new SqlCommand("dbo.GetDocDetails",connectionString))
+                    {
+                        sqlCommand.CommandType = CommandType.StoredProcedure;
+                        sqlCommand.Parameters.Add("@Input",SqlDbType.NVarChar).Value = id;
+                        connectionString.Open();
+                        using (var dataReader = sqlCommand.ExecuteReader())
+                        {
+                            while (dataReader.Read())
+                            {
+                                var dataRow = new ExpandoObject() as IDictionary<string, object>;
+                                for (var iFiled = 0; iFiled < dataReader.FieldCount; iFiled++)
+                                    dataRow.Add(
+                                        dataReader.GetName(iFiled),
+                                        dataReader.IsDBNull(iFiled) ? null : dataReader[iFiled] // use null instead of {}
+                                    );
+
+                                jsonResult.Add((ExpandoObject)dataRow);
+                            }
+                        }
+
+                        // var reader = sqlCommand.ExecuteReader();
+                        // var dt = new DataTable();
+                        // dt.Load(reader);
+                        //jsonResult = dt;
+                    }
                 }
+                return Ok(new {Result = jsonResult});
             }
-            return Ok(new {Data = jsonResult});
+            catch(Exception ex)
+            {
+                return BadRequest(error: ex.Message);
+            }
         }
 
         // POST api/values

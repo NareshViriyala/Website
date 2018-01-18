@@ -1,0 +1,33 @@
+<div class="vertical-center">
+  <div class="container">
+    <div class="row">
+        <h1 class="text-center text-primary">logmenow</h1>
+    </div>
+    <br/>
+    <div class="row">
+      <div class="col-xs-8 col-xs-offset-2">
+        <div class="input-group">
+          <input id="tbx_search" type="number" class="form-control" name="Search" placeholder="Search" value={{tbxvalue}}>
+          <span class="input-group-addon">
+            <i class="glyphicon glyphicon-search"></i>
+          </span>
+        </div>
+      </div>
+    </div>
+    <br/>
+    <div class="row">
+      <div class="text-center">
+        <button type="button" class="btn btn-primary" (click)='searchClick()' ngmodel>
+            <span ng-show="searchButtonText == 'Searching'"><i class="glyphicon glyphicon-refresh spinning"></i></span>
+          {{btnValue}}</button>
+      </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-xs-6 col-xs-offset-3 alert alert-info alert-dismissable collapse">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Info!</strong> no result found for the search.
+          </div>
+    </div>
+  </div>
+</div>
