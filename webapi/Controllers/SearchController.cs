@@ -29,36 +29,23 @@ namespace webapi.Controllers
         {
             try
             {
-                var jsonResult = new List<dynamic>();
-                using(var connectionString = new SqlConnection(_appSettings.ConnectionString))
+                var jsonResult = string.Empty;
+                using(var sqlConnection = new SqlConnection(_appSettings.ConnectionString))
                 {
-                    using(var sqlCommand = new SqlCommand("dbo.GetDocDetails",connectionString))
+                    using(var sqlCommand = new SqlCommand("dbo.GetSearchType",sqlConnection))
                     {
                         sqlCommand.CommandType = CommandType.StoredProcedure;
                         sqlCommand.Parameters.Add("@Input",SqlDbType.NVarChar).Value = id;
-                        connectionString.Open();
-                        using (var dataReader = sqlCommand.ExecuteReader())
-                        {
-                            while (dataReader.Read())
-                            {
-                                var dataRow = new ExpandoObject() as IDictionary<string, object>;
-                                for (var iFiled = 0; iFiled < dataReader.FieldCount; iFiled++)
-                                    dataRow.Add(
-                                        dataReader.GetName(iFiled),
-                                        dataReader.IsDBNull(iFiled) ? null : dataReader[iFiled] // use null instead of {}
-                                    );
+                        sqlCommand.Parameters.Add("@Output", SqlDbType.NVarChar, 64);
+                        sqlCommand.Parameters["@Output"].Direction = ParameterDirection.Output;
 
-                                jsonResult.Add((ExpandoObject)dataRow);
-                            }
-                        }
-
-                        // var reader = sqlCommand.ExecuteReader();
-                        // var dt = new DataTable();
-                        // dt.Load(reader);
-                        //jsonResult = dt;
+                        sqlConnection.Open();
+                        sqlCommand.ExecuteNonQuery();
+                        sqlConnection.Close();
+                        jsonResult = sqlCommand.Parameters["@Output"].Value.ToString();
                     }
                 }
-                return Ok(new {Result = jsonResult});
+                return Ok(jsonResult);
             }
             catch(Exception ex)
             {
