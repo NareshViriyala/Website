@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http'
-import { IdoctorInfo } from './imodel'
+import { IdoctorInfo, IHospitalInfo } from './imodel'
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -22,6 +22,12 @@ export class ApiService {
   getDoctorDetails(ControllerName: string, Id : string) : Observable<IdoctorInfo> {
     return this._http.get(this.apibaseurl+ControllerName+"/get?id="+Id)
                      .map((response : Response) => <IdoctorInfo>response.json())
+                     .catch(this.handleApiError);
+  }
+
+  getHospitalDetails(ControllerName: string, Id : string, Type : string) : Observable<IHospitalInfo> {
+    return this._http.get(this.apibaseurl+ControllerName+"/get?id="+Id+"&type="+Type)
+                     .map((response : Response) => <IHospitalInfo>response.json())
                      .catch(this.handleApiError);
   }
     

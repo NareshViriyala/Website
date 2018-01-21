@@ -1,53 +1,160 @@
 <br/>
 <div class="container">
-  <div class="row">
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <h4 class="panel-title pull-left">Doctor details</h4>
-            <!-- <button class="btn btn-default pull-right" data-target="#docDetails" data-toggle="collapse">Expand</button> -->
-            <i class="glyphicon glyphicon-circle-arrow-down pull-right" data-target="#docDetails" data-toggle="collapse"></i>
-            <div class="clearfix"></div>
-        </div>
-        <div class="panel-body collapse" id="docDetails">
-            <ul class="list-group">
-              <li class="list-group-item">One</li>
-              <li class="list-group-item">Two</li>
-              <li class="list-group-item">Three</li>
-            </ul>
-        </div>
-    </div>
-    <div class="panel panel-success">
-        <div class="panel-heading">
-            <h3 class="panel-title pull-left">Hospital details</h3>
-            <!-- <button class="btn btn-default pull-right" data-target="#hospDetails" data-toggle="collapse">Expand</button> -->
-            <i class="glyphicon glyphicon-circle-arrow-down pull-right" data-target="#hospDetails" data-toggle="collapse"></i>
-            <div class="clearfix"></div>
-        </div>
-        <div class="panel-body collapse" id="hospDetails">
-          <ul class="list-group">
-            <li class="list-group-item">One</li>
-            <li class="list-group-item">Two</li>
-            <li class="list-group-item">Three</li>
-          </ul>
-        </div>
-    </div>
 
-    <div class="panel panel-warning">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="panel panel-primary">
         <div class="panel-heading">
-            <h3 class="panel-title pull-left">Appointment details</h3>
-            <!-- <button class="btn btn-default pull-right" data-target="#hospDetails" data-toggle="collapse">Expand</button> -->
-            <i class="glyphicon glyphicon-circle-arrow-down pull-right" data-target="#apptDetails" data-toggle="collapse"></i>
-            <div class="clearfix"></div>
+          <h3 class="panel-title pull-left">Doctor details</h3>
+          <i class="glyphicon glyphicon-circle-arrow-{{arrowSignDoc}} pull-right" data-target="#docDetails" data-toggle="collapse" (click)='arrowSignDoc = (arrowSignDoc=="down"?"up":"down")'></i>
+          <div class="clearfix"></div>
         </div>
-        <div class="panel-body collapse" id="apptDetails">
-          <ul class="list-group">
-            <li class="list-group-item">One</li>
-            <li class="list-group-item">Two</li>
-            <li class="list-group-item">Three</li>
-          </ul>
+        <div *ngIf='docInfo' class="panel-body collapse paddingStyle" id="docDetails" >
+          <div class="col-xs-3 imageStyle">
+            <img src="./assets/Doctor{{docInfo.HospId}}.JPG" class="img-responsive img-thumbnail"/>
+          </div>
+          <div class="col-xs-9">
+              <table class="table table-bordered table-hover table-condensed">
+                <tr class="info">
+                  <td colspan="2">
+                      <b>{{'Dr.' + docInfo.FirstName + ' ' + docInfo.LastName}}</b>
+                      <sub>{{' '+docInfo.Specialty}}</sub>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Email</td>
+                  <td>{{docInfo.Email}}</td>
+                </tr>
+                <tr>
+                  <td>Phone</td>
+                  <td>{{docInfo.Phone}}</td>
+                </tr>
+                <tr>
+                  <td>Fee</td>
+                  <td>&#8377;{{' ' + docInfo.Fee}}</td>
+                </tr>
+                <tr>
+                    <td>Experience</td>
+                    <td>{{docInfo.Experience}}</td>
+                  </tr>
+              </table>
+          </div>
         </div>
+      </div>
     </div>
   </div>
+
+
+  <div class="row  row-eq-height">
+    <div class="col-xs-12">
+      <div class="panel panel-success">
+        <div class="panel-heading panel-hospital_heading">
+          <h3 class="panel-title pull-left">Hospital details</h3>
+          <i class="glyphicon glyphicon-circle-arrow-{{arrowSignHosp}} pull-right" data-target="#hospDetails" data-toggle="collapse" (click)='arrowSignHosp = (arrowSignHosp=="down"?"up":"down")'></i>
+          <div class="clearfix"></div>
+        </div>
+        <div *ngIf='hospInfo' class="panel-body collapse paddingStyle" id="hospDetails">
+          <div class="col-xs-3 imageStyle">
+            <img src="./assets/Hospital{{hospInfo.HospId}}.JPG" class="img-responsive img-thumbnail"/>
+          </div>
+          <div class="col-xs-9">
+            <table class="table table-bordered table-hover table-condensed">
+              <tr class="success">
+                <td colspan="2">
+                    <b>{{hospInfo.Name}}</b>
+                </td>
+              </tr>
+              <tr>
+                <td>Address</td>
+                <td>
+                  {{hospInfo.Address1}}<br/>
+                  {{hospInfo.Address2}}<br/>
+                  {{hospInfo.City}}<br/>
+                  {{hospInfo.State + ', ' +hospInfo.Zip}}<br/>
+                  {{hospInfo.Country}}<br/>
+                </td>
+              </tr>
+              <tr>
+                <td>Phone</td>
+                <td>
+                  {{hospInfo.Phone1}}<br/>
+                  {{hospInfo.Phone2}}
+                </td>
+              </tr>
+              <tr *ngIf='hospInfo.Email'>
+                <td>Email</td>
+                <td>{{hospInfo.Email}}</td>
+              </tr>
+              <tr *ngIf='hospInfo.WebSite'>
+                <td>Website</td>
+                <td>{{hospInfo.WebSite}}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="panel panel-warning">
+        <div class="panel-heading panel-appt_heading">
+          <h3 class="panel-title pull-left">Appointment details</h3>
+          <i class="glyphicon glyphicon-circle-arrow-{{arrowSignAppt}} pull-right" data-target="#apptDetails" data-toggle="collapse" (click)='arrowSignAppt = (arrowSignAppt=="down"?"up":"down")'></i>
+          <div class="clearfix"></div>
+        </div>
+        <div class="panel-body collapse in" id="apptDetails">
+            <div class="col-xs-3 imageStyle">
+              <div class="card">
+                <div class="appt_time">
+                  Queue
+                </div>
+
+                <div class="appt_number">
+                  <h1>1</h1>
+                </div>
+              
+                <div class="appt_time">
+                  January 1, 2016
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-9">
+              <div *ngIf='apptStatus' class="text-center"> 
+                  <button class="btn btn-warning">Set Appointment</button> 
+              </div>
+
+              <table *ngIf='!apptStatus' class="table table-bordered table-hover table-condensed">
+                <tr class="panel-appt_heading_light">
+                  <td colspan="2">
+                      <b>Testing name</b>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Age</td>
+                  <td>25</td>
+                </tr>
+                <tr>
+                  <td>Gender</td>
+                  <td>Male</td>
+                </tr>
+                <tr>
+                    <td>Token no</td>
+                    <td>4</td>
+                  </tr>
+
+                <td colspan="2" style="padding: 5px">
+                    <button class="btn btn-warning" >Cancel</button>
+                    <button class="btn btn-warning pull-right" >&nbsp;&nbsp;&nbsp;Edit&nbsp;&nbsp;&nbsp;</button>
+                </td>
+              </table>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
 </div>
-
-

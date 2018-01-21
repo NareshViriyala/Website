@@ -11,7 +11,22 @@ export interface IdoctorInfo {
     Phone:string;
     Fee:string;
     Specialty:string;
-    PracticeStartDate: string;
+    Experience: string;
     HospId:number;
     RegisterDate:string;
+}
+
+
+export interface IHospitalInfo {
+    HospId:number;
+    Name:string;
+    Address1:string;
+    Address2:string;
+    City:string;
+    State:string;
+    Zip:string;
+    Country:string;
+    Phone1: string;
+    Email:string;
+    WebSite:string;
 }

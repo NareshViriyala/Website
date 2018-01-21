@@ -1,3 +1,44 @@
 .glyphicon {
     font-size: 30px;
 }
+
+.paddingStyle{
+    padding: 5px;
+}
+
+.imageStyle{
+    padding: 0px;
+}
+
+
+.panel-hospital_heading{
+    background: #5cb85c;
+    color: white
+}
+
+.panel-appt_heading{
+    background: #FF8800;
+    color: white
+}
+
+.panel-appt_heading_light{
+    background: #f0ad4e;
+}
+
+
+div.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: center;
+  }
+  
+  div.appt_number {
+      background-color: #f0ad4e;
+      color: white;
+      padding: 10px;
+      font-size: 40px;
+  }
+  
+  div.appt_time {
+      padding: 10px;
+      color: #FF8800;
+  }
