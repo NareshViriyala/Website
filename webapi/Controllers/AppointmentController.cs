@@ -33,7 +33,7 @@ namespace webapi.Controllers
             public string StartTime {get; set;}
             public string EndTime {get; set;}
             public int IsCancelled {get; set;}
-            public int IsServerMap {get; set;}
+            public bool IsServerMap {get; set;}
             public string UType {get; set;}
             public string Remark {get; set;}
         }
@@ -48,10 +48,10 @@ namespace webapi.Controllers
                 {
                     using(var sqlCommand = new SqlCommand("dbo.ConfigureAppointment",sqlConnection))
                     {
-                        string val = JsonConvert.SerializeObject(jsonString).Replace("\\", "");
+                        string inputdata = JsonConvert.SerializeObject(jsonString);
                         sqlCommand.CommandType = CommandType.StoredProcedure;
-                        sqlCommand.Parameters.Add("@JsonInput",SqlDbType.NVarChar, -1).Value = JsonConvert.SerializeObject(jsonString).Replace(@"\", "");
-                        sqlCommand.Parameters["@JsonInput"].Direction = ParameterDirection.Output;
+                        sqlCommand.Parameters.Add("@JsonInput",SqlDbType.NVarChar, -1).Value = inputdata;
+                        //sqlCommand.Parameters["@JsonInput"].Direction = ParameterDirection.Output;
                         sqlConnection.Open();
                         using (var dataReader = sqlCommand.ExecuteReader())
                         {

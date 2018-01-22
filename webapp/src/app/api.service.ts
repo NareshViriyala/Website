@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http'
-import { IdoctorInfo, IHospitalInfo } from './imodel'
+import { Http, Response, RequestOptions, Headers } from '@angular/http'
+import { IdoctorInfo, IHospitalInfo, IAppointmentInfo } from './imodel'
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -10,7 +10,16 @@ import 'rxjs/add/Observable/throw';
 export class ApiService {
 
   private apibaseurl : string = 'http://localhost/';
+  
   constructor(private _http : Http) { }
+
+  getHeader() : RequestOptions {
+    let headers = new Headers();  
+    headers.append('Content-Type', 'application/json');
+    headers.append('Authorization','Bearer '+sessionStorage.getItem("authToken"));
+    let options = new RequestOptions({ headers: headers });
+    return options;
+  }
 
   getSearchIDResult(ControllerName: string, Id : string) : Observable<string> {
     return this._http.get(this.apibaseurl+ControllerName+"/get?id="+Id)
@@ -28,6 +37,12 @@ export class ApiService {
   getHospitalDetails(ControllerName: string, Id : string, Type : string) : Observable<IHospitalInfo> {
     return this._http.get(this.apibaseurl+ControllerName+"/get?id="+Id+"&type="+Type)
                      .map((response : Response) => <IHospitalInfo>response.json())
+                     .catch(this.handleApiError);
+  }
+
+  postAppointmentDetails(ControllerName: string, BodyInfo: string) : Observable<IAppointmentInfo> {
+    return this._http.post(this.apibaseurl+ControllerName, BodyInfo, this.getHeader())
+                     .map((response : Response) => <IAppointmentInfo>response.json())
                      .catch(this.handleApiError);
   }
     

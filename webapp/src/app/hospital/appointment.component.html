@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6 col-sm-offset-1 col-md-offset-2 col-lg-offset-3" >
+    <div class="well">
+        <h2 style="color: #f0ad4e">Appointment</h2>
+      
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" class="form-control" name="Name" ngModel required>
+        </div>
+        <div class="form-group">
+          <label>Age</label>
+          <input type="number" class="form-control" placeholder="Age" name="Age" ngModel required>
+        </div>
+        
+        <div>
+          <h4>Gender</h4>
+          <label class="radio-inline">
+            <input name="radioGroup" id="radio1" value="option1" type="radio" checked="">Male
+          </label>
+          <label class="radio-inline">
+            <input name="radioGroup" id="radio1" value="option1" type="radio">Female
+          </label>
+        </div>
+
+        <br/>
+        <div class="form-group">
+          <button type="submit" class="btn btn-warning" (click)='onCancelButtonClick()'>Cancel</button>
+          <button type="submit" class="btn btn-warning pull-right" (click)='onSubmitButtonClick()'>Submit</button>
+        </div>
+    </div>
+  </div>
+</div>
+

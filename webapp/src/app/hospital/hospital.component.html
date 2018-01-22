@@ -10,10 +10,10 @@
           <div class="clearfix"></div>
         </div>
         <div *ngIf='docInfo' class="panel-body collapse paddingStyle" id="docDetails" >
-          <div class="col-xs-3 imageStyle">
+          <div class="col-xs-2 imageStyle">
             <img src="./assets/Doctor{{docInfo.HospId}}.JPG" class="img-responsive img-thumbnail"/>
           </div>
-          <div class="col-xs-9">
+          <div class="col-xs-10">
               <table class="table table-bordered table-hover table-condensed">
                 <tr class="info">
                   <td colspan="2">
@@ -54,10 +54,10 @@
           <div class="clearfix"></div>
         </div>
         <div *ngIf='hospInfo' class="panel-body collapse paddingStyle" id="hospDetails">
-          <div class="col-xs-3 imageStyle">
+          <div class="col-xs-2 imageStyle">
             <img src="./assets/Hospital{{hospInfo.HospId}}.JPG" class="img-responsive img-thumbnail"/>
           </div>
-          <div class="col-xs-9">
+          <div class="col-xs-10">
             <table class="table table-bordered table-hover table-condensed">
               <tr class="success">
                 <td colspan="2">
@@ -67,11 +67,8 @@
               <tr>
                 <td>Address</td>
                 <td>
-                  {{hospInfo.Address1}}<br/>
-                  {{hospInfo.Address2}}<br/>
-                  {{hospInfo.City}}<br/>
-                  {{hospInfo.State + ', ' +hospInfo.Zip}}<br/>
-                  {{hospInfo.Country}}<br/>
+                  {{hospInfo.Address1 + ', ' + hospInfo.Address2}}<br/>
+                  {{hospInfo.City + ', ' + hospInfo.State + ', ' +hospInfo.Zip+ ', ' + hospInfo.Country}}<br/>
                 </td>
               </tr>
               <tr>
@@ -122,11 +119,24 @@
               </div>
             </div>
             <div class="col-xs-9">
-              <div *ngIf='apptStatus' class="text-center"> 
-                  <button class="btn btn-warning">Set Appointment</button> 
+
+              <!-- Show "Take appointment" button -->
+              <div *ngIf='divStatus == "showButton"' class="text-center"> 
+                  <button class="btn btn-warning" (click)="takeAppointment()">Set Appointment</button> 
+                  <br/><br/>
+                  <div *ngIf='showError' class="col-xs-6 col-xs-offset-3 alert alert-warning alert-dismissable panel-appt_heading_light" style="color:white" >
+                    <a class="close" (click)='showError = false'>&times;</a>
+                    <strong>Info!</strong> Please login to take appointment
+                  </div>
               </div>
 
-              <table *ngIf='!apptStatus' class="table table-bordered table-hover table-condensed">
+              <!-- Show "Take appointment" Form -->
+              <div *ngIf='divStatus == "showForm"'>
+                <app-appointment [apptInfo]='apptInfo' (FormButtonClicked)=''></app-appointment>
+              </div>
+
+              <!-- Show "appointment details" -->
+              <table *ngIf='divStatus == "showDetails"' class="table table-bordered table-hover table-condensed">
                 <tr class="panel-appt_heading_light">
                   <td colspan="2">
                       <b>Testing name</b>
@@ -141,8 +151,13 @@
                   <td>Male</td>
                 </tr>
                 <tr>
-                    <td>Token no</td>
-                    <td>4</td>
+                  <td>Token no</td>
+                  <td>4</td>
+                </tr>
+
+                <tr>
+                    <td>Taken at</td>
+                    <td>2017/12/01 23:34</td>
                   </tr>
 
                 <td colspan="2" style="padding: 5px">

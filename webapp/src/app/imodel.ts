@@ -1,7 +1,3 @@
-export interface Imodel {
-    
-}
- 
 export interface IdoctorInfo {
     DocId:number;
     DocGUID:string;
@@ -29,4 +25,20 @@ export interface IHospitalInfo {
     Phone1: string;
     Email:string;
     WebSite:string;
+}
+
+export interface IAppointmentInfo {
+    ApptID:number;
+    UserID:number;
+    Name:string;
+    Age:string;
+    Gender:string;
+    DocId:number;
+    ApptTime:string;
+    StartTime:string;
+    EndTime:string;
+    IsCancelled: number;
+    IsServerMap:boolean;
+    UType:string;
+    Remark:string;
 }

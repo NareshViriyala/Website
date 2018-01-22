@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
 import { ApiService } from './api.service';
 import { HospitalComponent } from './hospital/hospital.component';
+import { AppointmentComponent } from './hospital/appointment.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { HospitalComponent } from './hospital/hospital.component';
     AppComponent,
     HomeComponent,
     FooterComponent,
-    HospitalComponent
+    HospitalComponent,
+    AppointmentComponent
   ],
   imports: [
     BrowserModule,
