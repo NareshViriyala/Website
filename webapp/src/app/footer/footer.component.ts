@@ -9,7 +9,19 @@ export class FooterComponent implements OnInit {
 
   constructor() { }
 
+  loginModel: any = {};
+  registerModel: any = {};
+
   ngOnInit() {
+  }
+
+  login(){
+    console.log('login');
+  }
+
+  register()
+  {
+    console.log('register');
   }
 
 }

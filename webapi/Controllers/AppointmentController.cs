@@ -48,9 +48,8 @@ namespace webapi.Controllers
                 {
                     using(var sqlCommand = new SqlCommand("dbo.ConfigureAppointment",sqlConnection))
                     {
-                        string inputdata = JsonConvert.SerializeObject(jsonString);
                         sqlCommand.CommandType = CommandType.StoredProcedure;
-                        sqlCommand.Parameters.Add("@JsonInput",SqlDbType.NVarChar, -1).Value = inputdata;
+                        sqlCommand.Parameters.Add("@JsonInput",SqlDbType.NVarChar, -1).Value = JsonConvert.SerializeObject(jsonString);
                         //sqlCommand.Parameters["@JsonInput"].Direction = ParameterDirection.Output;
                         sqlConnection.Open();
                         using (var dataReader = sqlCommand.ExecuteReader())
