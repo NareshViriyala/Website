@@ -69,7 +69,7 @@ namespace webapi
                 app.UseDeveloperExceptionPage();
             }
             app.UseCors(x => x
-               .AllowAnyOrigin()
+               .WithOrigins("http://localhost:80,http://ec2-54-157-237-224.compute-1.amazonaws.com:80")
                .AllowAnyMethod()
                .AllowAnyHeader()
                .AllowCredentials());

@@ -11,6 +11,7 @@ export class FooterComponent implements OnInit {
 
   loginModel: any = {};
   registerModel: any = {};
+  loading : boolean = false;
 
   ngOnInit() {
   }
