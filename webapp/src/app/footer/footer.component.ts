@@ -6,23 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./footer.component.css']
 })
 export class FooterComponent implements OnInit {
+  modalHeader : string = 'Login';
 
   constructor() { }
-
-  loginModel: any = {};
-  registerModel: any = {};
-  loading : boolean = false;
 
   ngOnInit() {
   }
 
-  login(){
-    console.log('login');
-  }
-
-  register()
-  {
-    console.log('register');
+  headerFromModal(headerValue : string):void{
+    this.modalHeader = headerValue;
   }
 
 }

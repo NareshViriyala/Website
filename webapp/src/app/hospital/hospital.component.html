@@ -6,38 +6,43 @@
       <div class="panel panel-primary">
         <div class="panel-heading">
           <h3 class="panel-title pull-left">Doctor details</h3>
-          <i class="glyphicon glyphicon-circle-arrow-{{arrowSignDoc}} pull-right" data-target="#docDetails" data-toggle="collapse" (click)='arrowSignDoc = (arrowSignDoc=="down"?"up":"down")'></i>
+          <img *ngIf="!docInfo" class="pull-right" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+          <i *ngIf="docInfo" class="glyphicon glyphicon-circle-arrow-{{arrowSignDoc}} pull-right" data-target="#docDetails" data-toggle="collapse" (click)='arrowSignDoc = (arrowSignDoc=="down"?"up":"down")'></i>
           <div class="clearfix"></div>
         </div>
         <div *ngIf='docInfo' class="panel-body collapse paddingStyle" id="docDetails" >
-          <div class="col-xs-2 imageStyle">
+          <div class="col-xs-4 imageStyle">
             <img src="./assets/Doctor{{docInfo.HospId}}.JPG" class="img-responsive img-thumbnail"/>
           </div>
-          <div class="col-xs-10">
-              <table class="table table-bordered table-hover table-condensed">
-                <tr class="info">
-                  <td colspan="2">
-                      <b>{{'Dr.' + docInfo.FirstName + ' ' + docInfo.LastName}}</b>
-                      <sub>{{' '+docInfo.Specialty}}</sub>
-                  </td>
+          <div class="col-xs-8">
+            <table class="table table-hover  table-condensed">
+              <tr class="info">
+                <td colspan="3">
+                    <b>{{'Dr.' + docInfo.FirstName + ' ' + docInfo.LastName}}</b>
+                    <sub>{{' '+docInfo.Specialty}}</sub>
+                </td>
+              </tr>
+              <tr>
+                <td>Email</td>
+                <td>:</td>
+                <td>{{docInfo.Email}}</td>
+              </tr>
+              <tr>
+                <td>Phone</td>
+                <td>:</td>
+                <td>{{docInfo.Phone}}</td>
+              </tr>
+              <tr>
+                <td>Fee</td>
+                <td>:</td>
+                <td>&#8377;{{' ' + docInfo.Fee}}</td>
+              </tr>
+              <tr>
+                <td>Experience</td>
+                <td>:</td>
+                <td>{{docInfo.Experience}}</td>
                 </tr>
-                <tr>
-                  <td>Email</td>
-                  <td>{{docInfo.Email}}</td>
-                </tr>
-                <tr>
-                  <td>Phone</td>
-                  <td>{{docInfo.Phone}}</td>
-                </tr>
-                <tr>
-                  <td>Fee</td>
-                  <td>&#8377;{{' ' + docInfo.Fee}}</td>
-                </tr>
-                <tr>
-                    <td>Experience</td>
-                    <td>{{docInfo.Experience}}</td>
-                  </tr>
-              </table>
+            </table>
           </div>
         </div>
       </div>
@@ -45,12 +50,13 @@
   </div>
 
 
-  <div class="row  row-eq-height">
+  <div class="row ">
     <div class="col-xs-12">
       <div class="panel panel-success">
         <div class="panel-heading panel-hospital_heading">
           <h3 class="panel-title pull-left">Hospital details</h3>
-          <i class="glyphicon glyphicon-circle-arrow-{{arrowSignHosp}} pull-right" data-target="#hospDetails" data-toggle="collapse" (click)='arrowSignHosp = (arrowSignHosp=="down"?"up":"down")'></i>
+          <img *ngIf="!hospInfo" class="pull-right" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+          <i *ngIf="hospInfo" class="glyphicon glyphicon-circle-arrow-{{arrowSignHosp}} pull-right" data-target="#hospDetails" data-toggle="collapse" (click)='arrowSignHosp = (arrowSignHosp=="down"?"up":"down")'></i>
           <div class="clearfix"></div>
         </div>
         <div *ngIf='hospInfo' class="panel-body collapse paddingStyle" id="hospDetails">
@@ -58,7 +64,7 @@
             <img src="./assets/Hospital{{hospInfo.HospId}}.JPG" class="img-responsive img-thumbnail"/>
           </div>
           <div class="col-xs-10">
-            <table class="table table-bordered table-hover table-condensed">
+            <table class="table table-hover table-condensed">
               <tr class="success">
                 <td colspan="2">
                     <b>{{hospInfo.Name}}</b>

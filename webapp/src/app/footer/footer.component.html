@@ -83,7 +83,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title text-primary">Login</h4>
+                <h4 class="modal-title text-primary">{{modalHeader}}</h4>
             </div>
             <div class="modal-body">
             <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
@@ -97,59 +97,12 @@
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner">
                     <div class="item active">
-                        <form name="formLogin" (ngSubmit)="l.form.valid && login()" #l="ngForm" novalidate>
-                            <div class="form-group" [ngClass]="{ 'has-error': l.submitted && !phone.valid }">
-                                <label for="phone">Phone</label>
-                                <input type="text" class="form-control" name="phone" [(ngModel)]="loginModel.phone" #phone="ngModel" required />
-                                <div *ngIf="l.submitted && !phone.valid" class="help-block">Phone number is required</div>
-                            </div>
-                            <div class="form-group" [ngClass]="{ 'has-error': l.submitted && !password.valid }">
-                                <label for="password">Password</label>
-                                <input type="password" class="form-control" name="password" [(ngModel)]="loginModel.password" #password="ngModel" required />
-                                <div *ngIf="l.submitted && !password.valid" class="help-block">Password is required</div>
-                            </div>
-                            <!-- Below div dummy and is of no use 
-                            this is just to have equal heigh for login and register page -->
-                            <!-- <div class="form-group invisible" [ngClass]="{ 'has-error': l.submitted && !dummy.valid }">
-                                <label for="dummy">Dummy</label>
-                                <input type="password" class="form-control" name="dummy" [(ngModel)]="loginModel.dummy" #dummy="ngModel"/>
-                                <div *ngIf="l.submitted && !dummy.valid" class="help-block">Password is required</div>
-                            </div> -->
-                            <!-- End -->
-                            <div class="form-group">
-                                <button [disabled]="loading" class="btn btn-primary">Login</button>
-                                <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-                                <a data-target="#myCarousel" data-slide-to="1" class="btn btn-link" >Register</a>
-                                <button type="button" class="btn btn-primary pull-right" data-dismiss="modal">Cancel</button>
-                            </div>
-                        </form>
+                        <app-login [modalHeader]='modalHeader' (modalHeaderChange)='headerFromModal($event)'></app-login>
                     </div>
 
               
                     <div class="item">
-                        <form name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
-                            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
-                                <label for="username">Name</label>
-                                <input type="text" class="form-control" name="username" [(ngModel)]="registerModel.username" #username="ngModel" required />
-                                <div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
-                            </div>
-                            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !regphone.valid }">
-                                <label for="regphone">Phone</label>
-                                <input type="text" class="form-control" name="regphone" [(ngModel)]="registerModel.regphone" #regphone="ngModel" required />
-                                <div *ngIf="f.submitted && !regphone.valid" class="help-block">Phone number is required</div>
-                            </div>
-                            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !regpassword.valid }">
-                                <label for="regpassword">Password</label>
-                                <input type="password" class="form-control" name="regpassword" [(ngModel)]="registerModel.regpassword" #regpassword="ngModel" required />
-                                <div *ngIf="f.submitted && !regpassword.valid" class="help-block">Password is required</div>
-                            </div>
-                            <div class="form-group">
-                                <button [disabled]="loading" class="btn btn-primary">Register</button>
-                                <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-                                <a data-target="#myCarousel" data-slide-to="0" class="btn btn-link" >Back</a>
-                                <button type="button" class="btn btn-primary pull-right" data-dismiss="modal">Cancel</button>
-                            </div>
-                        </form>
+                        <app-registration [modalHeader]='modalHeader' (modalHeaderChange)='headerFromModal($event)'></app-registration>
                     </div>
               
                     <div class="item">

@@ -8,6 +8,8 @@
 
 .imageStyle{
     padding: 0px;
+    width: unset;
+    height: 100%;
 }
 
 
@@ -29,16 +31,46 @@
 div.card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     text-align: center;
-  }
-  
-  div.appt_number {
-      background-color: #f0ad4e;
-      color: white;
-      padding: 10px;
-      font-size: 40px;
-  }
-  
-  div.appt_time {
-      padding: 10px;
-      color: #FF8800;
-  }
+}
+
+div.appt_number {
+    background-color: #f0ad4e;
+    color: white;
+    padding: 10px;
+    font-size: 40px;
+}
+
+div.appt_time {
+    padding: 10px;
+    color: #FF8800;
+}
+
+.container {
+    margin: 0%;
+    padding: 5px;
+    width: 100%
+}
+
+
+pre {
+    display: block;
+    padding: 0px;
+    margin: 0px;
+    word-break: break-all;
+    word-wrap: break-word;
+    background-color: white;
+    border: 0px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+.table{
+    width: inherit;
+}
+
+.table>tbody>tr{
+    padding-left: 15%;
+    padding-right: 15%;
+}
+
+.table>tbody>tr>td{
+    border: 0px;
+}

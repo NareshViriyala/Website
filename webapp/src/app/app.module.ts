@@ -11,6 +11,8 @@ import { FooterComponent } from './footer/footer.component';
 import { ApiService } from './api.service';
 import { HospitalComponent } from './hospital/hospital.component';
 import { AppointmentComponent } from './hospital/appointment.component';
+import { LoginComponent } from './footer/login.component';
+import { RegistrationComponent } from './footer/registration.component';
 
 
 @NgModule({
@@ -19,7 +21,9 @@ import { AppointmentComponent } from './hospital/appointment.component';
     HomeComponent,
     FooterComponent,
     HospitalComponent,
-    AppointmentComponent
+    AppointmentComponent,
+    LoginComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,

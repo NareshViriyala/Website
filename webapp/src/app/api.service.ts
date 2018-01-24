@@ -9,7 +9,7 @@ import 'rxjs/add/Observable/throw';
 @Injectable()
 export class ApiService {
 
-  private apibaseurl : string = 'http://localhost:8080/';
+  private apibaseurl : string =  window.location.protocol.toString() + "//" + window.location.hostname + ':8080/';
   //private apibaseurl : string = 'http://ec2-54-157-237-224.compute-1.amazonaws.com:8080/';
 
   

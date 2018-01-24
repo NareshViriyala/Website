@@ -26,9 +26,19 @@ namespace webapi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors();
+            //services.AddCors();
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder
+                    //.AllowAnyOrigin()
+                    .WithOrigins("http://localhost","http://localhost:4200", "http://ec2-54-91-0-254.compute-1.amazonaws.com")
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials() );
+            });
             // services.AddDbContext<DataContext>(x => x.UseInMemoryDatabase("TestDB"));
-            services.AddDbContext<DataContext>(x => x.UseSqlServer("Data Source=ec2-54-157-237-224.compute-1.amazonaws.com;Initial Catalog=LMNDatabase;Integrated Security=False;Password=India@123;User ID=sa"));
+            services.AddDbContext<DataContext>(x => x.UseSqlServer("Data Source=ec2-54-91-0-254.compute-1.amazonaws.com;Initial Catalog=LMNDatabase;Integrated Security=False;Password=India@123;User ID=sa"));
             services.AddMvc();
             services.AddAutoMapper();
 
@@ -68,11 +78,12 @@ namespace webapi
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.UseCors(x => x
-               .WithOrigins("http://localhost:80,http://ec2-54-157-237-224.compute-1.amazonaws.com:80")
-               .AllowAnyMethod()
-               .AllowAnyHeader()
-               .AllowCredentials());
+            // app.UseCors(x => x
+            //    .WithOrigins("http://localhost:80,http://ec2-54-157-237-224.compute-1.amazonaws.com:80")
+            //    .AllowAnyMethod()
+            //    .AllowAnyHeader()
+            //    .AllowCredentials());
+            app.UseCors("CorsPolicy");
             app.UseAuthentication();
             app.UseMvc();
         }
