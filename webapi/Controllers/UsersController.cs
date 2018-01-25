@@ -36,34 +36,43 @@ namespace webapi.Controllers
         [HttpPost("authenticate")]
         public IActionResult Authenticate([FromBody]UserDto userDto)
         {
-            var user = _userService.Authenticate(userDto.Phone, userDto.Password);
-            if(user == null)
-                return Unauthorized();
+            try{
+                var user = _userService.Authenticate(userDto.Phone, userDto.Password);
+                if(user == null)
+                    return Unauthorized();
 
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var key = System.Text.Encoding.ASCII.GetBytes(_appSettings.Secret);
-            var tokenDescriptor = new SecurityTokenDescriptor
-            {
-                Subject = new ClaimsIdentity(new Claim[]
+                var tokenHandler = new JwtSecurityTokenHandler();
+                var key = System.Text.Encoding.ASCII.GetBytes(_appSettings.Secret);
+                var tokenDescriptor = new SecurityTokenDescriptor
                 {
-                    new Claim(ClaimTypes.Name, userDto.Id.ToString())
-                }),
-                Expires = DateTime.UtcNow.AddHours(2),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-            };
+                    Subject = new ClaimsIdentity(new Claim[]
+                    {
+                        new Claim(ClaimTypes.Name, userDto.Id.ToString())
+                    }),
+                    Expires = DateTime.UtcNow.AddHours(2),
+                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+                };
 
-            var token = tokenHandler.CreateToken(tokenDescriptor);
-            var tokenString = tokenHandler.WriteToken(token);
+                var token = tokenHandler.CreateToken(tokenDescriptor);
+                var tokenString = tokenHandler.WriteToken(token);
 
-            //return basic user info (without password) and token to store client side
-            return Ok(new {
-                Id = user.Id,
-                Phone = user.Phone,
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                Email = user.Email,
-                Token = tokenString
-            });
+                //return basic user info (without password) and token to store client side
+                return Ok(new {
+                    Id = user.Id,
+                    Phone = user.Phone,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    Email = user.Email,
+                    Token = tokenString
+                });
+            }
+            catch (AppException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (Exception e){
+                return Unauthorized();
+            }
         }
 
         [AllowAnonymous]
@@ -75,12 +84,16 @@ namespace webapi.Controllers
 
             try{
                 _userService.Create(user, userDto.Password);
-                return Ok();
+                return Ok("Resigtration successful");
             }
             catch (AppException ex)
             {
-                return BadRequest(ex.Message);
+                return Ok(ex.Message);
             }
+            catch (Exception e){
+                return BadRequest(e.Message);
+            }
+
         }
 
         // [HttpGet]

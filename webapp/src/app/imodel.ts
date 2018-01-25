@@ -1,3 +1,12 @@
+export interface Iuser {
+    id:number;
+    phone:number
+    firstName:string;
+    lastName:string;
+    email:string;
+    token:string;
+}
+
 export interface IdoctorInfo {
     DocId:number;
     DocGUID:string;

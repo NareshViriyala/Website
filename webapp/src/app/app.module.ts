@@ -13,6 +13,7 @@ import { HospitalComponent } from './hospital/hospital.component';
 import { AppointmentComponent } from './hospital/appointment.component';
 import { LoginComponent } from './footer/login.component';
 import { RegistrationComponent } from './footer/registration.component';
+import { OtpComponent } from './footer/otp.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { RegistrationComponent } from './footer/registration.component';
     HospitalComponent,
     AppointmentComponent,
     LoginComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    OtpComponent
   ],
   imports: [
     BrowserModule,

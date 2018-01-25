@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, RequestOptions, Headers } from '@angular/http'
-import { IdoctorInfo, IHospitalInfo, IAppointmentInfo } from './imodel'
+import { IdoctorInfo, IHospitalInfo, IAppointmentInfo, Iuser } from './imodel'
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-import 'rxjs/add/Observable/throw';
+import 'rxjs/add/observable/throw';
 
 @Injectable()
 export class ApiService {
@@ -22,6 +22,18 @@ export class ApiService {
     headers.append('Authorization','Bearer '+sessionStorage.getItem("authToken"));
     let options = new RequestOptions({ headers: headers });
     return options;
+  }
+
+  postRegistrationDetails(ControllerName: string, BodyInfo: string) : Observable<string> {
+    return this._http.post(this.apibaseurl+ControllerName, BodyInfo, this.getHeader())
+                     .map((response : Response) => response["_body"])
+                     .catch(this.handleApiError);
+  }
+
+  postLoginDetails(ControllerName: string, BodyInfo: string) : Observable<Iuser> {
+    return this._http.post(this.apibaseurl+ControllerName, BodyInfo, this.getHeader())
+                     .map((response : Response) => response)
+                     .catch(this.handleApiError);
   }
 
   getSearchIDResult(ControllerName: string, Id : string) : Observable<string> {
@@ -50,7 +62,7 @@ export class ApiService {
   }
     
   handleApiError(error: Response){
-    console.error("This is custom error :"+error);
+    //console.error("This is custom error :"+error['_body']);
     return Observable.throw(error);
   }
 }

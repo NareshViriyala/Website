@@ -33,11 +33,11 @@ namespace webapi.Services
             
             //check if the username exists
             if(user == null)
-                return null;
+                throw new AppException("Phone number not registered");
 
             //check if the password is correct
             if(!VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
-                return null;
+                throw new AppException("Invalid phone number or password");
 
             //authentication successful
             return user;

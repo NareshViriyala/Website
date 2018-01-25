@@ -14,6 +14,8 @@ export class AppointmentComponent implements OnInit {
   @Output()
   FormButtonClicked : EventEmitter<IAppointmentInfo> = new EventEmitter<IAppointmentInfo>();
 
+  loading : boolean = false;
+
   onCancelButtonClick(){
     this.FormButtonClicked.emit(this.apptInfo);
   }

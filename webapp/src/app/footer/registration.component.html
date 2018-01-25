@@ -1,24 +1,30 @@
 <form name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
-  <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !firstName.valid }">
-      <label for="firstName">First Name</label>
-      <input type="text" class="form-control" name="firstName" [(ngModel)]="registerModel.firstName" #firstName="ngModel" required />
-      <div *ngIf="f.submitted && !firstName.valid" class="help-block">First Name is required</div>
-  </div>
-  <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !regphone.valid }">
-      <label for="regphone">Phone</label>
-      <input type="text" class="form-control" name="regphone" [(ngModel)]="registerModel.regphone" #regphone="ngModel" required pattern="[0-9]*" minlength="10" maxlength="10"/>
-      <div *ngIf="f.submitted && regphone.hasError('required')" class="help-block">Phone number is required</div>
-      <div *ngIf="f.submitted && regphone.hasError('pattern')" class="help-block">Phone number should be 10 digit</div>
-  </div>
-  <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !regpassword.valid }">
-      <label for="regpassword">Password</label>
-      <input type="password" class="form-control" name="regpassword" [(ngModel)]="registerModel.regpassword" #regpassword="ngModel" required />
-      <div *ngIf="f.submitted && !regpassword.valid" class="help-block">Password is required</div>
-  </div>
-  <div class="form-group">
-      <button [disabled]="loading" class="btn btn-primary">Register</button>
-      <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-      <a data-target="#myCarousel" data-slide-to="0" class="btn btn-link" (click)='changeModalHeader()'>Back</a>
-      <button type="button" class="btn btn-primary pull-right" data-dismiss="modal">Cancel</button>
-  </div>
+    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !firstName.valid }">
+        <label for="firstName">First Name</label>
+        <input type="text" class="form-control" name="firstName" [(ngModel)]="registerModel.firstName" #firstName="ngModel" required />
+        <div *ngIf="f.submitted && !firstName.valid" class="help-block">First Name is required</div>
+    </div>
+    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !lastName.valid }">
+        <label for="lastName">Last Name</label>
+        <input type="text" class="form-control" name="lastName" [(ngModel)]="registerModel.lastName" #lastName="ngModel" />
+    </div>
+    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !phone.valid }">
+        <label for="phone">Phone</label>
+        <input type="text" class="form-control" name="phone" [(ngModel)]="registerModel.phone" #phone="ngModel" required pattern="[0-9]*" minlength="10" maxlength="10"/>
+        <div *ngIf="f.submitted && phone.hasError('required')" class="help-block">Phone number is required</div>
+        <div *ngIf="f.submitted && phone.hasError('pattern')" class="help-block">Phone number should be 10 digit</div>
+        <div *ngIf="registrationError" class="help-block" style="color:red">{{registrationErrorMsg}}</div>
+    </div>
+    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" name="password" [(ngModel)]="registerModel.password" #password="ngModel" required />
+        <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
+    </div>
+    <div class="form-group">
+        <button [disabled]="loading" class="btn btn-primary">Register</button>
+        <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+        <a data-target="#myCarousel" data-slide-to="0" class="btn btn-link" (click)='changeModalHeader()'>Back</a>
+        <button type="button" class="btn btn-primary pull-right" data-dismiss="modal">Cancel</button>
+        <a id='otpModal' data-target="#myCarousel" data-slide-to="2" class="btn btn-link hidden">Next</a>
+    </div>
 </form>

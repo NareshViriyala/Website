@@ -11,39 +11,43 @@
           <div class="clearfix"></div>
         </div>
         <div *ngIf='docInfo' class="panel-body collapse paddingStyle" id="docDetails" >
-          <div class="col-xs-4 imageStyle">
-            <img src="./assets/Doctor{{docInfo.HospId}}.JPG" class="img-responsive img-thumbnail"/>
-          </div>
-          <div class="col-xs-8">
-            <table class="table table-hover  table-condensed">
-              <tr class="info">
-                <td colspan="3">
-                    <b>{{'Dr.' + docInfo.FirstName + ' ' + docInfo.LastName}}</b>
-                    <sub>{{' '+docInfo.Specialty}}</sub>
-                </td>
-              </tr>
-              <tr>
-                <td>Email</td>
-                <td>:</td>
-                <td>{{docInfo.Email}}</td>
-              </tr>
-              <tr>
-                <td>Phone</td>
-                <td>:</td>
-                <td>{{docInfo.Phone}}</td>
-              </tr>
-              <tr>
-                <td>Fee</td>
-                <td>:</td>
-                <td>&#8377;{{' ' + docInfo.Fee}}</td>
-              </tr>
-              <tr>
-                <td>Experience</td>
-                <td>:</td>
-                <td>{{docInfo.Experience}}</td>
-                </tr>
-            </table>
-          </div>
+          <div class="container">
+              <div class="row">
+                <div class="col-xs-4">
+                    <img src="./assets/Doctor{{docInfo.HospId}}.JPG" class="img-responsive img-rounded"/>
+                </div><!--panel body col 1-->
+                <div class="col-xs-8">
+                    <table class="table table-hover  table-condensed">
+                      <tr class="info">
+                        <td colspan="3">
+                            <b>{{'Dr.' + docInfo.FirstName + ' ' + docInfo.LastName}}</b>
+                            <sub>{{' '+docInfo.Specialty}}</sub>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Email</td>
+                        <td>:</td>
+                        <td>{{docInfo.Email}}</td>
+                      </tr>
+                      <tr>
+                        <td>Phone</td>
+                        <td>:</td>
+                        <td>{{docInfo.Phone}}</td>
+                      </tr>
+                      <tr>
+                        <td>Fee</td>
+                        <td>:</td>
+                        <td>&#8377;{{' ' + docInfo.Fee}}</td>
+                      </tr>
+                      <tr>
+                        <td>Experience</td>
+                        <td>:</td>
+                        <td>{{docInfo.Experience}}</td>
+                      </tr>
+                    </table>
+                </div><!--panel body col 2-->
+              </div><!--panel body row-->
+            </div> <!--panel body container-->
         </div>
       </div>
     </div>
@@ -60,39 +64,43 @@
           <div class="clearfix"></div>
         </div>
         <div *ngIf='hospInfo' class="panel-body collapse paddingStyle" id="hospDetails">
-          <div class="col-xs-2 imageStyle">
-            <img src="./assets/Hospital{{hospInfo.HospId}}.JPG" class="img-responsive img-thumbnail"/>
-          </div>
-          <div class="col-xs-10">
-            <table class="table table-hover table-condensed">
-              <tr class="success">
-                <td colspan="2">
-                    <b>{{hospInfo.Name}}</b>
-                </td>
-              </tr>
-              <tr>
-                <td>Address</td>
-                <td>
-                  {{hospInfo.Address1 + ', ' + hospInfo.Address2}}<br/>
-                  {{hospInfo.City + ', ' + hospInfo.State + ', ' +hospInfo.Zip+ ', ' + hospInfo.Country}}<br/>
-                </td>
-              </tr>
-              <tr>
-                <td>Phone</td>
-                <td>
-                  {{hospInfo.Phone1}}<br/>
-                  {{hospInfo.Phone2}}
-                </td>
-              </tr>
-              <tr *ngIf='hospInfo.Email'>
-                <td>Email</td>
-                <td>{{hospInfo.Email}}</td>
-              </tr>
-              <tr *ngIf='hospInfo.WebSite'>
-                <td>Website</td>
-                <td>{{hospInfo.WebSite}}</td>
-              </tr>
-            </table>
+          <div class="container">
+            <div class="row">
+              <div class="col-xs-4">
+                <img src="./assets/Hospital{{hospInfo.HospId}}.JPG" class="img-responsive img-rounded"/>
+              </div>
+              <div class="col-xs-8">
+                <table class="table table-hover table-condensed">
+                  <tr class="success">
+                    <td colspan="2">
+                        <b>{{hospInfo.Name}}</b>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Address</td>
+                    <td>
+                      {{hospInfo.Address1 + ', ' + hospInfo.Address2}}<br/>
+                      {{hospInfo.City + ', ' + hospInfo.State + ', ' +hospInfo.Zip+ ', ' + hospInfo.Country}}<br/>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Phone</td>
+                    <td>
+                      {{hospInfo.Phone1}}<br/>
+                      {{hospInfo.Phone2}}
+                    </td>
+                  </tr>
+                  <tr *ngIf='hospInfo.Email'>
+                    <td>Email</td>
+                    <td>{{hospInfo.Email}}</td>
+                  </tr>
+                  <tr *ngIf='hospInfo.WebSite'>
+                    <td>Website</td>
+                    <td>{{hospInfo.WebSite}}</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -109,73 +117,76 @@
           <div class="clearfix"></div>
         </div>
         <div class="panel-body collapse in" id="apptDetails">
-            <div class="col-xs-3 imageStyle">
-              <div class="card">
-                <div class="appt_time">
-                  Queue
-                </div>
 
-                <div class="appt_number">
-                  <h1>1</h1>
+            <div class="container">
+              <div class="row">
+                <div class="col-xs-4">
+                  <div class="card">
+                      <div class="appt_time">
+                        Queue
+                      </div>
+      
+                      <div class="appt_number">
+                        <h1>1</h1>
+                      </div>
+                    
+                      <div class="appt_time">
+                        January 1, 2016
+                      </div>
+                    </div>
                 </div>
-              
-                <div class="appt_time">
-                  January 1, 2016
-                </div>
-              </div>
-            </div>
-            <div class="col-xs-9">
-
-              <!-- Show "Take appointment" button -->
-              <div *ngIf='divStatus == "showButton"' class="text-center"> 
-                  <button class="btn btn-warning" (click)="takeAppointment()">Set Appointment</button> 
-                  <br/><br/>
-                  <div *ngIf='showError' class="col-xs-6 col-xs-offset-3 alert alert-warning alert-dismissable panel-appt_heading_light" style="color:white" >
-                    <a class="close" (click)='showError = false'>&times;</a>
-                    <strong>Info!</strong> Please login to take appointment
+                <div class="col-xs-8">
+                  <!-- Show "Take appointment" button -->
+                  <div *ngIf='divStatus == "showButton"' class="text-center"> 
+                      <button class="btn btn-warning" (click)="takeAppointment()">Set Appointment</button> 
+                      <br/><br/>
+                      <div *ngIf='showError' class="col-xs-6 col-xs-offset-3 alert alert-warning alert-dismissable panel-appt_heading_light" style="color:white" >
+                        <a class="close" (click)='showError = false'>&times;</a>
+                        <strong>Info!</strong> Please login to take appointment
+                      </div>
                   </div>
+
+                  <!-- Show "Take appointment" Form -->
+                  <div *ngIf='divStatus == "showForm"'>
+                    <app-appointment [apptInfo]='apptInfo' (FormButtonClicked)='apptStatusChanges($event)'></app-appointment>
+                  </div>
+
+                  <!-- Show "appointment details" -->
+                  <table *ngIf='divStatus == "showDetails"' class="table table-bordered table-hover table-condensed">
+                      <tr class="panel-appt_heading_light">
+                        <td colspan="2">
+                            <b>Testing name</b>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Age</td>
+                        <td>25</td>
+                      </tr>
+                      <tr>
+                        <td>Gender</td>
+                        <td>Male</td>
+                      </tr>
+                      <tr>
+                        <td>Token no</td>
+                        <td>4</td>
+                      </tr>
+
+                      <tr>
+                          <td>Taken at</td>
+                          <td>2017/12/01 23:34</td>
+                        </tr>
+
+                      <td colspan="2" style="padding: 5px">
+                          <button class="btn btn-warning" >Cancel</button>
+                          <button class="btn btn-warning pull-right" (click)="divStatus = 'showForm'">&nbsp;&nbsp;&nbsp;Edit&nbsp;&nbsp;&nbsp;</button>
+                      </td>
+                    </table>
+                </div>
               </div>
-
-              <!-- Show "Take appointment" Form -->
-              <div *ngIf='divStatus == "showForm"'>
-                <app-appointment></app-appointment>
-              </div>
-
-              <!-- Show "appointment details" -->
-              <table *ngIf='divStatus == "showDetails"' class="table table-bordered table-hover table-condensed">
-                <tr class="panel-appt_heading_light">
-                  <td colspan="2">
-                      <b>Testing name</b>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Age</td>
-                  <td>25</td>
-                </tr>
-                <tr>
-                  <td>Gender</td>
-                  <td>Male</td>
-                </tr>
-                <tr>
-                  <td>Token no</td>
-                  <td>4</td>
-                </tr>
-
-                <tr>
-                    <td>Taken at</td>
-                    <td>2017/12/01 23:34</td>
-                  </tr>
-
-                <td colspan="2" style="padding: 5px">
-                    <button class="btn btn-warning" >Cancel</button>
-                    <button class="btn btn-warning pull-right" >&nbsp;&nbsp;&nbsp;Edit&nbsp;&nbsp;&nbsp;</button>
-                </td>
-              </table>
             </div>
         </div>
       </div>
     </div>
   </div>
   
-
 </div>

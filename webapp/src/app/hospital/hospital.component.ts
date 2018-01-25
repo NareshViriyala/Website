@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
-import { IdoctorInfo, IHospitalInfo, IAppointmentInfo } from '../imodel';
+import { IdoctorInfo, IHospitalInfo, IAppointmentInfo, Iuser } from '../imodel';
 import { Router } from '@angular/router';
 import { isNullOrUndefined } from 'util';
 
@@ -17,9 +17,10 @@ export class HospitalComponent implements OnInit {
   divStatus : string = 'showButton';
   showError : boolean = false;
 
-  docInfo : IdoctorInfo;
+  docInfo : IdoctorInfo ;
   hospInfo : IHospitalInfo;
-  apptInfo : IAppointmentInfo;
+  apptInfo : IAppointmentInfo= {"ApptID":0,"UserID":0,"Name":'',Age:'',"Gender":'',"DocId":0,"ApptTime":'',"StartTime":''
+  ,"EndTime":'',"IsCancelled":0,"IsServerMap":false,"UType":'',"Remark":''};
 
   constructor(private _apiservice : ApiService, private _router : Router) { }
 
@@ -31,6 +32,7 @@ export class HospitalComponent implements OnInit {
         .subscribe(
           (result) => {
             this.docInfo = result;
+            this.apptInfo.DocId = this.docInfo.DocId;
             //console.log(this.docInfo);
           },
           (error) => {
@@ -55,13 +57,25 @@ export class HospitalComponent implements OnInit {
   }
 
   takeAppointment(){
-    if(!sessionStorage.getItem('userProfile')){ //user not logged in
+    if(!sessionStorage.getItem('Id')){ //user not logged in
       this.divStatus = 'showButton';
       this.showError = true;
     }
     else if(sessionStorage.getItem('apptDetails')) //user logged with active appointment
       this.divStatus = 'showDetails';
-    else //user logged in but no active appointment
+    else {//user logged in but no active appointment
+      this.apptInfo.UserID = parseInt(sessionStorage.getItem('Id'));
       this.divStatus = 'showForm';
+    }
+  }
+
+  apptStatusChanges(response : IAppointmentInfo): void {
+    this.apptInfo = response;
+    //console.log(this.apptInfo);
+
+    if(this.apptInfo.ApptID == 0)
+      this.divStatus = 'showButton';
+    else
+      this.divStatus = 'showDetails';
   }
 }
