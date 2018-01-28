@@ -38,6 +38,88 @@ namespace webapi.Controllers
             public string Remark {get; set;}
         }
 
+        [AllowAnonymous]
+        [HttpGet("{id string}")]
+        public IActionResult DocQCount(string id)
+        {
+            try
+            {
+                var jsonResult = new List<dynamic>();
+                using(var sqlConnection = new SqlConnection(_appSettings.ConnectionString))
+                {
+                    using(var sqlCommand = new SqlCommand("dbo.GetDocQueueCount",sqlConnection))
+                    {
+                        sqlCommand.CommandType = CommandType.StoredProcedure;
+                        sqlCommand.Parameters.Add("@Input",SqlDbType.NVarChar).Value = id;
+                        sqlConnection.Open();
+                        using (var dataReader = sqlCommand.ExecuteReader())
+                        {
+                            while (dataReader.Read())
+                            {
+                                var dataRow = new ExpandoObject() as IDictionary<string, object>;
+                                for (var iFiled = 0; iFiled < dataReader.FieldCount; iFiled++)
+                                    dataRow.Add(
+                                        dataReader.GetName(iFiled),
+                                        dataReader.IsDBNull(iFiled) ? null : dataReader[iFiled] // use null instead of {}
+                                    );
+
+                                jsonResult.Add((ExpandoObject)dataRow);
+                            }
+                        }
+                        sqlConnection.Close();
+                        // var reader = sqlCommand.ExecuteReader();
+                        // var dt = new DataTable();
+                        // dt.Load(reader);
+                        //jsonResult = dt;
+                    }
+                }
+                return Ok(jsonResult[0]);
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost("{usrID int}")]
+        public IActionResult AppointmentDetails(int usrID)
+        {
+            try
+            {
+                var jsonResult = new List<dynamic>(); 
+                using(var sqlConnection = new SqlConnection(_appSettings.ConnectionString))
+                {
+                    using(var sqlCommand = new SqlCommand("dbo.GetAppointmentDetails",sqlConnection))
+                    {
+                        sqlCommand.CommandType = CommandType.StoredProcedure;
+                        sqlCommand.Parameters.Add("@UserID",SqlDbType.Int, -1).Value = usrID;
+                        //sqlCommand.Parameters["@JsonInput"].Direction = ParameterDirection.Output;
+                        sqlConnection.Open();
+                        using (var dataReader = sqlCommand.ExecuteReader())
+                        {
+                            while (dataReader.Read())
+                            {
+                                var dataRow = new ExpandoObject() as IDictionary<string, object>;
+                                for (var iFiled = 0; iFiled < dataReader.FieldCount; iFiled++)
+                                    dataRow.Add(
+                                        dataReader.GetName(iFiled),
+                                        dataReader.IsDBNull(iFiled) ? null : dataReader[iFiled] // use null instead of {}
+                                    );
+
+                                jsonResult.Add((ExpandoObject)dataRow);
+                            }
+                        }
+                        sqlConnection.Close();
+                    }
+                }
+                return Ok(jsonResult);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpPost("ConfigAppt")]
         public IActionResult ConfigAppt([FromBody]apptData jsonString)
         {

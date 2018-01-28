@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, RequestOptions, Headers } from '@angular/http'
-import { IdoctorInfo, IHospitalInfo, IAppointmentInfo, Iuser } from './imodel'
+import { IdoctorInfo, IHospitalInfo, IAppointmentInfo, Iuser, IDocQStatus } from './imodel'
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -19,7 +19,8 @@ export class ApiService {
   getHeader() : RequestOptions {
     let headers = new Headers();  
     headers.append('Content-Type', 'application/json');
-    headers.append('Authorization','Bearer '+sessionStorage.getItem("authToken"));
+    if(sessionStorage.getItem("Token"))
+      headers.append('Authorization','Bearer '+sessionStorage.getItem("Token"));
     let options = new RequestOptions({ headers: headers });
     return options;
   }
@@ -55,9 +56,15 @@ export class ApiService {
                      .catch(this.handleApiError);
   }
 
-  postAppointmentDetails(ControllerName: string, BodyInfo: string) : Observable<IAppointmentInfo> {
+  postSetAppointment(ControllerName: string, BodyInfo: string) : Observable<IAppointmentInfo> {
     return this._http.post(this.apibaseurl+ControllerName, BodyInfo, this.getHeader())
-                     .map((response : Response) => <IAppointmentInfo>response.json())
+                     .map((response : Response) => response)
+                     .catch(this.handleApiError);
+  }
+
+  getDocQStatus(ControllerName: string, Id: string) : Observable<IDocQStatus> {
+    return this._http.get(this.apibaseurl+ControllerName+'?Id='+Id)
+                     .map((response : Response) => response)
                      .catch(this.handleApiError);
   }
     

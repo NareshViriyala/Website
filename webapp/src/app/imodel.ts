@@ -51,3 +51,8 @@ export interface IAppointmentInfo {
     UType:string;
     Remark:string;
 }
+
+export interface IDocQStatus {
+    QCnt : number;
+    WaitTime : string;
+}

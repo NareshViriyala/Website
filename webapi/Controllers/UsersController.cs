@@ -71,6 +71,8 @@ namespace webapi.Controllers
                 return BadRequest(ex.Message);
             }
             catch (Exception e){
+                string dummystr = e.Message;
+                dummystr = dummystr + "this is to supress warning while build";
                 return Unauthorized();
             }
         }

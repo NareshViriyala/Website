@@ -1,13 +1,18 @@
 <footer class="navbar navbar-default navbar-fixed-bottom">
-  <div>
-    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modelRegister">
-        <span class="glyphicon glyphicon-info-sign"></span>
-      </button>
+    <div class="container footer" style="padding-left: 0%">
+        <div class="row">
+            <div class="col-xs-2">
+                <a class="btn btn-link btn-default"><strong>Help</strong></a>
+            </div>
+            <div *ngIf='loginStatus == "Sign In"' class="col-xs-2 pull-right" style="margin-right: 7%">
+                <a class="btn btn-link btn-default" data-toggle="modal" data-target="#modelRegister"><strong>Sign In</strong></a>
+            </div>
 
-    <button type="button" class="btn btn-primary btn-sm muted pull-right">
-      <span class="glyphicon glyphicon-log-out"></span>
-    </button>
-  </div>
+            <div *ngIf='loginStatus == "Logout"' class="col-xs-2 pull-right" style="margin-right: 7%">
+                <a class="btn btn-link btn-default" (click)='logout()'><strong>Logout</strong></a>
+            </div>
+        </div>
+    </div>
 </footer>
 
 <div id="modelRegister" class="modal fade" role="dialog">
@@ -19,17 +24,10 @@
             </div>
             <div class="modal-body">
             <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
-                <!-- Indicators
-                <ol class="carousel-indicators">
-                  <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                  <li data-target="#myCarousel" data-slide-to="1"></li>
-                  <li data-target="#myCarousel" data-slide-to="2"></li>
-                </ol> -->
-              
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner">
                     <div class="item active">
-                        <app-login [modalHeader]='modalHeader' (modalHeaderChange)='headerFromModal($event)'></app-login>
+                        <app-login [modalHeader]='modalHeader' [loginStatus]='loginStatus' (modalHeaderChange)='headerFromModal($event)' (loginStatuChange)='loginStatus = $event'></app-login>
                     </div>
 
               

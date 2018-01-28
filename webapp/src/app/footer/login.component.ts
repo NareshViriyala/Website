@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Iuser } from '../imodel';
 import { ApiService } from '../api.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -12,8 +13,14 @@ export class LoginComponent implements OnInit {
   @Input()
   modalHeader : string;
 
+  @Input()
+  loginStatus : string;
+
   @Output() 
   modalHeaderChange: EventEmitter<string> = new EventEmitter<string>();
+
+  @Output() 
+  loginStatuChange: EventEmitter<string> = new EventEmitter<string>();
 
   constructor(private _apiservice : ApiService) {}
 
@@ -49,10 +56,17 @@ export class LoginComponent implements OnInit {
             sessionStorage.setItem("Email", this.user.email);
             sessionStorage.setItem("Phone", this.user.phone.toString());
             sessionStorage.setItem("Token", this.user.token);
-            //console.log("Success : "+this.user);
+            document.getElementById('btnLoginCancel').click();
+            this.loginStatus = 'Logout'
+            this.loginStatuChange.emit(this.loginStatus); 
+
+            //reload the page if not Home page
+            if(window.location.toString().search('Home') == -1)
+              window.location.reload(true);
+            //console.log("Success : "+window.location.toString());
           },
           (error) => {
-            //console.log("Error : "+error);
+            console.log("Error : "+error);
             this.loading = false; 
             this.loginErrorMsg = error['_body'];
             this.loginError = true;

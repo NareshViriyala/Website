@@ -14,37 +14,24 @@
               <input type="text" class="form-control" name="age" [(ngModel)]="apptInfo.Age" #age="ngModel" required />
               <div *ngIf="l.submitted && !age.valid" class="help-block">age is required</div>
           </div>
+
+          <div class="form-group" [ngClass]="{ 'has-error': l.submitted && !radioGroup.valid }">
+            <h4>Gender</h4>
+            <label class="radio-inline active">
+              <input name="radioGroup" value="Male" type="radio" checked="" [(ngModel)]="apptInfo.Gender" #radioGroup="ngModel" required>Male
+            </label>
+            <label class="radio-inline">
+              <input name="radioGroup" value="Female" type="radio" [(ngModel)]="apptInfo.Gender" #radioGroup="ngModel" required>Female
+            </label>
+            <div *ngIf="l.submitted && !radioGroup.valid" class="help-block">Select gender</div>
+          </div>
+
           <div class="form-group">
               <button [disabled]="loading" class="btn btn-warning">Submit</button>
               <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-              <button type="button" class="btn btn-warning pull-right" (click)='onSubmitButtonClick()'>Cancel</button>
+              <button type="button" class="btn btn-warning pull-right" (click)='onCancelButtonClick()'>Cancel</button>
           </div>
         </form> 
-      
-        <!-- <div class="form-group">
-          <label>Name</label>
-          <input type="text" class="form-control" name="Name" ngModel required>
-        </div>
-        <div class="form-group">
-          <label>Age</label>
-          <input type="number" class="form-control" placeholder="Age" name="Age" ngModel required>
-        </div>
-        
-        <div>
-          <h4>Gender</h4>
-          <label class="radio-inline">
-            <input name="radioGroup" id="radio1" value="option1" type="radio" checked="">Male
-          </label>
-          <label class="radio-inline">
-            <input name="radioGroup" id="radio1" value="option1" type="radio">Female
-          </label>
-        </div>
-
-        <br/>
-        <div class="form-group">
-          <button type="submit" class="btn btn-warning" (click)='onCancelButtonClick()'>Cancel</button>
-          <button type="submit" class="btn btn-warning pull-right" (click)='onSubmitButtonClick()'>Submit</button>
-        </div> -->
     </div>
   </div>
 </div>
